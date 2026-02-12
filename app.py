@@ -32,15 +32,15 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Environment variables
-SECRET_KEY = os.getenv("SECRET_KEY", "cloudnest-secret-key-change-in-production")
-MONGODB_URL = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
-SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
-SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
-SMTP_USER = os.getenv("SMTP_USER", "")
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
+SECRET_KEY = "venura@8907"
+MONGODB_URL = "mongodb+srv://Zerobothost:zero8907@cluster0.szwdcyb.mongodb.net/?appName=Cluster0"
+SMTP_HOST = "smtp.gmail.com"
+SMTP_PORT = "587"
+SMTP_USER = "cloudnestoffcail@gmail.com"
+SMTP_PASSWORD = "flyw zekr eddx menq"
 DOMAIN = os.getenv("DOMAIN", "cloudnest.app")
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
-BASE_DEPLOY_PATH = os.getenv("BASE_DEPLOY_PATH", "/var/cloudnest/apps")
+BASE_DEPLOY_PATH = "/var/cloudnest/apps"
 
 # FastAPI app
 app = FastAPI(title="CloudNest", description="Deploy Anything. Instantly.", version="1.0.0")

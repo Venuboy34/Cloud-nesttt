@@ -1,0 +1,10 @@
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+motor==3.3.2
+pymongo==4.6.1
+pydantic[email]==2.5.3
+passlib[bcrypt]==1.7.4
+PyJWT==2.8.0
+python-multipart==0.0.6
+gitpython==3.1.41
+docker==7.0.0

@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: cloudnest-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: cloudnest
+    networks:
+      - cloudnest-network
+
+  cloudnest-backend:
+    build: .
+    container_name: cloudnest-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./apps:/var/cloudnest/apps
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-cloudnest-secret-key-change-in-production}
+      - MONGODB_URL=mongodb://mongodb:27017
+      - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - DOMAIN=${DOMAIN:-cloudnest.app}
+      - FRONTEND_URL=${FRONTEND_URL:-http://localhost:3000}
+      - BASE_DEPLOY_PATH=/var/cloudnest/apps
+    depends_on:
+      - mongodb
+    networks:
+      - cloudnest-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  cloudnest-network:
+    driver: bridge
